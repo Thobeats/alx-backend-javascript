@@ -24,8 +24,8 @@ class Pricing {
     this._currency = currency; // eslint-disable-line no-underscore-dangle
   }
 
-  get code() {
-    return this._code; // eslint-disable-line no-underscore-dangle
+  get currency() {
+    return this._currency; // eslint-disable-line no-underscore-dangle
   }
 
   displayFullPrice() {
