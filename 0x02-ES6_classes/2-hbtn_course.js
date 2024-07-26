@@ -6,7 +6,7 @@ class HolbertonCourse {
   }
 
   set name(name) {
-    if (!(name instanceof String)) {
+    if (typeof (name) !== 'string') {
       throw new TypeError('Name must be a string');
     }
     this._name = name; // eslint-disable-line no-underscore-dangle
@@ -17,7 +17,7 @@ class HolbertonCourse {
   }
 
   set length(length) {
-    if (!(length instanceof Number)) {
+    if ((typeof (length) !== 'number')) {
       throw new TypeError('Length must be a string');
     }
     this._length = length; // eslint-disable-line no-underscore-dangle
@@ -28,7 +28,7 @@ class HolbertonCourse {
   }
 
   set students(students) {
-    if (!(students instanceof Array)) {
+    if ((typeof (students) !== 'object')) {
       throw new TypeError('Students must be an array');
     }
 
