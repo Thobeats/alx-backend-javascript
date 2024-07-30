@@ -17,7 +17,7 @@ class Currency {
 
   set code(code) {
     if (typeof (code) !== 'string') {
-      throw new TypeError('Length must be a string');
+      throw new TypeError('Code must be a string');
     }
     this._code = code; // eslint-disable-line no-underscore-dangle
   }
