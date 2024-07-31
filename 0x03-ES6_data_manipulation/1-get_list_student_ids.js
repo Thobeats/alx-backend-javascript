@@ -1,11 +1,9 @@
 function getListStudentIds(objectArray) {
-  let mappedArray = [];
-
   if (objectArray instanceof Array) {
-    mappedArray = objectArray.map((obj) => obj.id); //
+    return objectArray.map((obj) => obj.id); //
   }
 
-  return mappedArray;
+  return [];
 }
 
 export default getListStudentIds;
