@@ -14,14 +14,14 @@ export class Director implements DirectorInterface {
   workFromHome() {
     return 'Working from home';
   }
-   getCoffeeBreak() {
+  getCoffeeBreak() {
     return 'Getting a coffee break';
   }
-   workDirectorTasks() {
+  workDirectorTasks() {
     return 'Getting to director tasks';
   }
 }
-  
+
 export class Teacher implements TeacherInterface {
   workFromHome() {
     return 'Cannot work from home';
@@ -39,5 +39,17 @@ export function createEmployee(salary: (number | string)): (Director | Teacher) 
     return new Teacher();
   }
   return new Director();
+}
+
+export function isDirector(employee: (Director | Teacher)): boolean {
+  return employee instanceof Director;
+}
+
+export function executeWork(employee: (Director | Teacher)) {
+  if (employee instanceof Director) {
+    employee.workDirectorTasks();
+  } else {
+    employee.workTeacherTasks();
+  }
 }
   
