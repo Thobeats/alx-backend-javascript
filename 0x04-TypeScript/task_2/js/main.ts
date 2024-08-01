@@ -46,10 +46,20 @@ export function isDirector(employee: (Director | Teacher)): boolean {
 }
 
 export function executeWork(employee: (Director | Teacher)) {
-  if (employee instanceof Director) {
-    employee.workDirectorTasks();
-  } else {
-    employee.workTeacherTasks();
+  if (isDirector(employee)) {
+    return (employee as Director).workDirectorTasks();
+  }
+  return (employee as Teacher).workTeacherTasks();
+}
+
+export type Subjects = ('Math' | 'History');
+
+export function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+  if (todayClass === 'History') {
+    return 'Teaching History';
   }
 }
   
