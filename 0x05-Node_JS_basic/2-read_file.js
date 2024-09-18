@@ -4,6 +4,7 @@ const countStudents = (path) => {
   try {
     const database = fs.readFileSync(path, 'utf-8');
     const lines = database.trim().split('\n');
+    if (lines.length === 0) throw new Error('Cannot load the database');
     lines.shift();
     const FIELDS = {};
     let NUMBER_OF_STUDENTS = 0;
