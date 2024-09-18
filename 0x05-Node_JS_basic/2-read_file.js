@@ -23,7 +23,7 @@ const countStudents = (path) => {
       }
     }
   } catch (err) {
-    console.log("Cannot load the database");
+    console.log('Cannot load the database');
   }
 };
 
