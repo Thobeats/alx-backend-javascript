@@ -1,14 +1,12 @@
-const { stdin, stdout } = require('node:process');
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
-stdout.write('Welcome to Holberton School, what is your name?\n');
-
-stdin.on('readable', () => {
-  const response = stdin.read();
+process.stdin.on('readable', () => {
+  const response = process.stdin.read();
   if (response !== null) {
-    stdout.write(`Your name is: ${response}`);
+    process.stdout.write(`Your name is: ${response}`);
   }
 });
 
-stdin.on('end', () => {
-  stdout.write('This important software is now closing\n');
+process.stdin.on('end', () => {
+  process.stdout.write('This important software is now closing\n');
 });
