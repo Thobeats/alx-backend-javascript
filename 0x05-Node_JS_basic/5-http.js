@@ -1,4 +1,3 @@
-
 const http = require('http');
 const fs = require('fs');
 
@@ -6,7 +5,6 @@ const PORT = 1245;
 const HOST = 'localhost';
 const app = http.createServer();
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
-
 
 const countStudents = (dataPath) => new Promise((resolve, reject) => {
   if (!dataPath) {
