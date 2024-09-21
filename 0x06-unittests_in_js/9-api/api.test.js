@@ -1,42 +1,36 @@
-const { expect } = require('chai');
 const request = require('request');
+const { expect } = require('chai');
 
-describe('Index page', () => {
-    it('get the correct status code', ()=>{
-        request('http://localhost:7865', (error, response, body) => {
-            expect(response.statusCode).to.equal(200);
-        });
+describe('API integration test', () => {
+  const API_URL = 'http://localhost:7865';
+
+  it('GET / returns correct response', (done) => {
+    request.get(`${API_URL}/`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Welcome to the payment system');
+      done();
     });
+  });
 
-    it('get the correct result', ()=>{
-        request('http://localhost:7865', (error, response, body) => {
-            expect(response.body).to.equal('Welcome to the payment system');
-        });
+  it('GET /cart/:id returns correct response for valid :id', (done) => {
+    request.get(`${API_URL}/cart/47`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Payment methods for cart 47');
+      done();
     });
+  });
 
-    it('get the correct port', ()=>{
-        request('http://localhost:7865', (error, response, body) => {
-            expect(response.request.uri.port).to.equal('7865');
-        });
+  it('GET /cart/:id returns 404 response for negative number values in :id', (done) => {
+    request.get(`${API_URL}/cart/-47`, (_err, res, _body) => {
+      expect(res.statusCode).to.be.equal(404);
+      done();
     });
+  });
 
-    it('get the correct value for id', ()=>{
-        request('http://localhost:7865/cart/12', (error, response, body) => {
-            expect(body).to.equal('Payment methods for cart 12');
-        });
+  it('GET /cart/:id returns 404 response for non-numeric values in :id', (done) => {
+    request.get(`${API_URL}/cart/d200-44a5-9de6`, (_err, res, _body) => {
+      expect(res.statusCode).to.be.equal(404);
+      done();
     });
-
-    it('get the correct status code', ()=>{
-        request('http://localhost:7865/cart/12', (error, response, body) => {
-            expect(response.statusCode).to.equal(200);
-        });
-    });
-
-    it('can’t accept :id not a number', ()=>{
-        request('http://localhost:7865/cart/hello', (error, response, body) => {
-            expect(response.statusCode).to.equal(404);
-        });
-    });
-
-
+  });
 });
