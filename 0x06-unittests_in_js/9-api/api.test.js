@@ -32,7 +32,7 @@ describe('Index page', () => {
         });
     });
 
-    it('get the correct value for wrong value', ()=>{
+    it('can’t accept :id not a number', ()=>{
         request('http://localhost:7865/cart/hello', (error, response, body) => {
             expect(response.statusCode).to.equal(404);
         });
